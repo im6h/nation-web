@@ -1,13 +1,18 @@
-<template>
-  <div class="card m-1 p-0 custom-item">
+<template >
+  <div class="card m-1 p-0 custom-item" @mouseenter="show = false" @mouseleave="show =true">
     <div class="row m-0 card-header">
-      <div class="col-7 text-left">
-        <p class="custom">{{nation.name}}</p>
-        <p>{{nation.nativeName}}</p>
-      </div>
-      <div class="col-5 my-auto">
-        <img :src="nation.flag" :alt="nation.name" class="custom-img" />
-      </div>
+      <transition v-if="show" name="fade">
+        <div class="text-center mx-auto">
+          <h4 class="">{{nation.name}}</h4>
+          <p>{{nation.nativeName}}</p>
+        </div>
+      </transition>
+      <!-- flag -->
+      <transition name="fade" v-else>
+        <div class="my-auto mx-auto" >
+          <img v-if="showImg" :src="nation.flag" :alt="nation.name" class="custom-img" />
+        </div>
+      </transition>
     </div>
     <ul class="list-group list-group-flush">
       <!-- Country code 2 -->
@@ -78,21 +83,33 @@ export default {
   data() {
     return {
       currencies: [],
-      callingCodes: []
+      callingCodes: [],
+      show: true
     };
+  },
+  methods: {
+    showImg() {
+    
+    }
   }
 };
 </script>
 
 <style scoped>
-.custom:hover {
-  color: cornflowerblue;
-}
 .custom-item {
   width: 16.5rem;
 }
 .custom-img {
-  width: 4rem;
-  height: 3rem;
+  width: 10rem;
+  height: 5rem;
+}
+/* animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 5s;
+}
+.fade-enter,
+.fade-leave {
+  opacity: 1;
 }
 </style>

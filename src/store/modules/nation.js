@@ -17,7 +17,7 @@ const actions = {
     async GET_NATION({commit},code){
         const url = `https://restcountries.eu/rest/v2/alpha/${code}`;
         const res = await axios.get(url).catch(err => console.log(err));
-        console.log(res.data);
+        // console.log(res.data);
         commit("GET_NATION",res.data);
     }
 }

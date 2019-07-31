@@ -3,6 +3,7 @@
     <!-- <app-header></app-header> -->
     <div class="jumbotron justify-content-center pl-5 mt-4">
         <div class="col">
+            <!-- flag  -->
             <img class="round mx-auto d-block custom-img"
             :src="getDetailNation.flag" :alt="getDetailNation.name">
             <div class="media-body mx-auto ">
