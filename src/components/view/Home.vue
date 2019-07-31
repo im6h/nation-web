@@ -3,11 +3,11 @@
     <div>
       <app-header></app-header>
     </div>
-    <div class="container mt-5" id="body-custom">
+    <div class="container mt-2" id="body-custom">
       <h3 class="text-center">Nations of the world: {{getAllNation.length}}</h3>
-      <div class="row justify-content-md-center">
+      <div class="row justify-content-center">
         <div v-for="nation in getAllNation" :key="nation.index">
-          <router-link :to="'callingcode/' + nation.callingCodes" class="text-dark">
+          <router-link :to="'alpha/' + nation.alpha3Code.toLowerCase()" class="text-dark custom">
             <app-item :nation="nation"></app-item>
           </router-link>
         </div>
@@ -49,4 +49,8 @@ export default {
 </script>
 
 <style scoped>
+.custom:hover{
+  text-decoration: none;
+}
+
 </style>

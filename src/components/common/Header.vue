@@ -1,28 +1,32 @@
 <template>
   <div>
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-light p-0">
-        <div class="container">
-          <router-link to="/" class="text-danger navbar-brand">Nations</router-link>
-          <div class="navbar-nav mr-auto">
-            <div class="nav-item nav-link">
-              <router-link to="/about" class="text-dark">About</router-link>
-            </div>
-            <div class="nav-item nav-link">
-              <router-link to="/contact" class="text-dark">Contact</router-link>
-            </div>
+    <header class="bg-light">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light row p-1">
+          <div class="col-6 text-left">
+            <router-link to="/" class="navbar-brand ">
+              <h4 class="custom">Nations</h4>
+            </router-link>
           </div>
-        </div>
-      </nav>
+          <div class="col-6 text-right">
+             <router-link to="/about" class="navbar-brand ">
+              <h6 class="custom">About</h6>
+            </router-link>
+          </div>
+        </nav>
+      </div>
     </header>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Header"
+  name: "AppHeader"
 };
 </script>
 
 <style scoped>
+.custom:hover{
+  color: red;
+}
 </style>
