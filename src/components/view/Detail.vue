@@ -1,65 +1,153 @@
 <template>
-  <div class="container">
-    <!-- <app-header></app-header> -->
-    <div class="jumbotron justify-content-center pl-5 mt-4">
-        <div class="col">
-            <!-- flag  -->
-            <img class="round mx-auto d-block custom-img"
-            :src="getDetailNation.flag" :alt="getDetailNation.name">
-            <div class="media-body mx-auto ">
-                <h2 class="mt-5 text-center">{{getDetailNation.name}}</h2>
-                <div class="row container border border-dark">
-                    <div class="col text-right my-auto "><p>Capital: </p></div>
-                    <div class="col text-left">
-                        <p>{{getDetailNation.capital}}</p>
-                    </div>
-                </div>
-                <div class="row container  border border-dark">
-                    <div class="col text-right my-auto"><p>Code:</p></div>
-                    <div class="col text-left">
-                        <div v-for="code in getDetailNation.callingCodes" :key="code.index">
-                            <p>{{code}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row container border border-dark">
-                    <div class="col text-right my-auto "><p>Timezone:</p></div>
-                    <div class="col text-left">
-                        <div v-for="timezone in getDetailNation.timezones" :key="timezone.index">
-                            <p>{{timezone}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row container border border-dark">
-                    <div class="col text-right my-auto "><p>Languages:</p></div>
-                    <div class="col text-left">
-                        <div v-for="language in getDetailNation.languages" :key="language.index">
-                            <p>{{language.nativeName}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row container border border-dark">
-                    <div class="col text-right my-auto"><p>Currencies:</p></div>
-                    <div class="col text-left">
-                        <div v-for="currency in getDetailNation.currencies" :key="currency.index">
-                            <p>Code: {{currency.code}}</p>
-                            <p>Name: {{currency.name}}</p>
-                            <p>Symbol: {{currency.symbol}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row container border border-dark">
-                    <div class="col text-right my-auto"><p>Borders:</p></div>
-                    <div class="col text-left">
-                        <div v-for="border in getDetailNation.borders" :key="border.index">
-                            <p>{{border}}</p>
-                        </div>
-                    </div>
-                </div>
+  <div>
+    <app-header></app-header>
+    <div class="container mt-5">
+      <hr />
+      <div class="justify-content-center">
+        <div class="row">
+          <!-- flag  -->
+          <div class="col-lg-4">
+            <div>
+              <section>
+                <img
+                  class="round mx-auto w-100 h-100"
+                  :src="getDetailNation.flag"
+                  :alt="getDetailNation.name"
+                />
+              </section>
             </div>
+            <h4 class="text-left mt-4">Country</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>{{getDetailNation.name}}</td>
+                </tr>
+                <tr>
+                  <th>Offical</th>
+                  <td>{{getDetailNation.altSpellings[1]}}</td>
+                </tr>
+                <tr>
+                  <th>Alternative Spellings</th>
+                  <td>{{getDetailNation.altSpellings.join(", ")}}</td>
+                </tr>
+                <tr>
+                  <th>Populations</th>
+                  <td>{{getDetailNation.population}} peoples</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Name -->
+          <div class="col-lg-4">
+            <!-- language -->
+            <h4 class="text-left">Languages</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Native language</th>
+                  <td>{{getDetailNation.languages.map(e=>e.name).join(", ")}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- code -->
+            <h4 class="text-left">Codes</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Alpha code 2</th>
+                  <td>{{getDetailNation.alpha2Code}}</td>
+                </tr>
+                <tr>
+                  <th>Alpha code 3</th>
+                  <td>{{getDetailNation.alpha3Code}}</td>
+                </tr>
+                <tr>
+                  <th>Top leve domain</th>
+                  <td>{{getDetailNation.topLevelDomain.join(", ")}}</td>
+                </tr>
+                <tr>
+                  <th>Internal calling code</th>
+                  <td>{{getDetailNation.callingCodes.join(", ")}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- currency -->
+            <h4 class="text-left">Currencies</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Code</th>
+                  <td>{{getDetailNation.currencies.map(e=>e.code).join(", ")}}</td>
+                </tr>
+                <tr>
+                  <th>Name</th>
+                  <td>{{getDetailNation.currencies.map(e=>e.name).join(", ")}}</td>
+                </tr>
+                <tr>
+                  <th>Symbol</th>
+                  <td>{{getDetailNation.currencies.map(e=>e.symbol).join(", ")}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Geography -->
+          <div class="col-lg-4">
+            <h4 class="text-left">Geography</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Capital</th>
+                  <td>{{getDetailNation.capital}}</td>
+                </tr>
+                <tr>
+                  <th>Area</th>
+                  <td>
+                    {{getDetailNation.area}} km
+                    <sup>2</sup>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Region</th>
+                  <td>{{getDetailNation.region}}</td>
+                </tr>
+                <tr>
+                  <th>Timzone</th>
+                  <td>{{getDetailNation.timezones.join(", ")}}</td>
+                </tr>
+                <tr>
+                  <th>Subregion</th>
+                  <td>{{getDetailNation.subregion}}</td>
+                </tr>
+                <tr>
+                  <th>Lat/Lng</th>
+                  <td>{{getDetailNation.latlng.join(", ")}}</td>
+                </tr>
+                <tr>
+                  <th>Border</th>
+                  <td>
+                    {{getDetailNation.borders.join(", ")}}
+                    <!-- <span v-for="(border, index) in getDetailNation.borders" :key="index">
+                      <a :href="'/country/'+ border.toLowerCase()" class="m-2">{{border}}</a>
+                    </span> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h4 class="text-left">Regional economic bloc</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>{{ getDetailNation.regionalBlocs.map(e=>e.acronym).join(", ")}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <app-footer class="mt-4"></app-footer>
+      </div>
     </div>
-    <app-footer class="mt-2"></app-footer>
   </div>
 </template>
 
@@ -73,14 +161,18 @@ export default {
     AppFooter
   },
   data() {
-    return {};
+    return {
+       show : true,
+    };
   },
   computed: {
     getDetailNation() {
       return this.$store.getters.detailNation;
     }
   },
-  method: {},
+  method: {
+    
+  },
   created() {
     return this.$store.dispatch("GET_NATION", this.$route.params.code);
   }
@@ -88,8 +180,4 @@ export default {
 </script>
 
 <style scoped>
-.custom-img{
-    width: 40%;
-    height: 8%;
-}
 </style>

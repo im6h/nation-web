@@ -1,15 +1,17 @@
 <template >
   <div class="card m-1 p-0 custom-item" @mouseenter="show = false" @mouseleave="show =true">
-    <div class="row m-0 card-header">
+    <!-- float-button-search -->
+    
+    <div class="row m-0 card-header custom-size">
       <transition v-if="show" name="fade">
         <div class="text-center mx-auto">
-          <h4 class="">{{nation.name}}</h4>
+          <h4 class>{{nation.name}}</h4>
           <p>{{nation.nativeName}}</p>
         </div>
       </transition>
       <!-- flag -->
       <transition name="fade" v-else>
-        <div class="my-auto mx-auto" >
+        <div class="my-auto mx-auto">
           <img v-if="showImg" :src="nation.flag" :alt="nation.name" class="custom-img" />
         </div>
       </transition>
@@ -88,14 +90,13 @@ export default {
     };
   },
   methods: {
-    showImg() {
-    
-    }
+    showImg() {}
   }
 };
 </script>
 
 <style scoped>
+
 .custom-item {
   width: 16.5rem;
 }

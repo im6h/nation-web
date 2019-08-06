@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { stat } from 'fs';
 const getters = {
     allNation(state){
         return state.allNation;
@@ -6,6 +7,10 @@ const getters = {
     detailNation(state){
         return state.detailNation;
     },
+    regionNation(state){
+        return state.regionNation;
+    }
+
 }
 
 const actions = {
@@ -15,10 +20,16 @@ const actions = {
         commit("ALL_NATION",res.data);
     },
     async GET_NATION({commit},code){
-        const url = `https://restcountries.eu/rest/v2/alpha/${code}`;
+        let url = `https://restcountries.eu/rest/v2/alpha/${code}`;
         const res = await axios.get(url).catch(err => console.log(err));
         // console.log(res.data);
         commit("GET_NATION",res.data);
+    },
+    async GET_REGION_NATION({commit},region){
+        let url = `https://restcountries.eu/rest/v2/region/${region}`;
+        const res = await axios.get(url).catch(err => console.log(err));
+        console.log(res.data);
+        commit("GET_REGION_NATION",res.data);
     }
 }
 const mutations = {
@@ -27,11 +38,16 @@ const mutations = {
     },
     GET_NATION(state,data){
         state.detailNation = data;
+    },
+    GET_REGION_NATION(state,data){
+        state.regionNation = data;
     }
+    
 }
 const state = {
     allNation:[],
     detailNation:{},
+    regionNation:[],
 }
 export default{
     getters,
