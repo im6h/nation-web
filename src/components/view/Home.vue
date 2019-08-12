@@ -4,9 +4,20 @@
       <app-header></app-header>
     </div>
     <div class="container mt-3" id="body-custom">
-      <h3 class="text-center">Nations of the world: {{getAllNation.length}}</h3>
+      <h1>Search for a country</h1>
+      <form action>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            v-model="search"
+            placeholder="Search country"
+            @input="filter"
+          />
+        </div>
+      </form>
       <div class="row justify-content-center">
-        <div v-for="nation in getAllNation" :key="nation.index">
+        <div v-for="nation in filterNation" :key="nation.index">
           <router-link :to="'country/' + nation.alpha3Code.toLowerCase()" class="text-dark custom">
             <app-item :nation="nation"></app-item>
           </router-link>
@@ -16,17 +27,9 @@
     <!-- float-button -->
     <div>
       <div class="float" @click="show = !show">
-        <i class="material-icons mt-2">search</i>
+        <i class="material-icons mt-2">add</i>
       </div>
       <ul v-show="show">
-        <li class="non-style">
-          <div class="fab-name row" >
-            <span class="text-dark">
-              <i class="material-icons m-2">text_format</i>
-            </span>
-            <span class="mt-2">Name</span>
-          </div>
-        </li>
         <li class="non-style">
           <router-link class="fab-area row" to="/region/africa">
             <span class="text-dark">
@@ -34,16 +37,6 @@
             </span>
             <span class="mt-2">Region</span>
           </router-link>
-        </li>
-        <li class="non-style">
-          <div>
-            <div class="fab-code row">
-              <span class="text-dark">
-                <i class="material-icons m-2">code</i>
-              </span>
-              <span class="mt-2">Code</span>
-            </div>
-          </div>
         </li>
       </ul>
     </div>
@@ -71,13 +64,31 @@ export default {
     AppFooter
   },
   computed: {
-    getAllNation() {
-      return this.$store.getters.allNation;
+    filterNation() {
+      if (this.search) {
+        return this.$store.getters.filterNation;
+      } else {
+        return this.$store.getters.allNation;
+      }
+    },
+    search: {
+      get() {
+        return this.$store.getters.searchKey;
+      },
+      set(value) {
+        return this.$store.commit("SEARCH_KEY", value);
+      }
     }
   },
 
   methods: {
-    
+    filter() {
+      if (this.search) {
+        return this.$store.dispatch("FILTERED_NATION");
+      } else {
+        return this.$store.dispatch("ALL_NATION");
+      }
+    }
   },
   created() {
     return this.$store.dispatch("ALL_NATION");
@@ -86,7 +97,7 @@ export default {
 </script>
 
 <style scoped>
-.non-style{
+.non-style {
   list-style-type: none;
 }
 .float {
@@ -111,7 +122,7 @@ export default {
   border-radius: 10px;
   text-align: center;
 }
-.fab-name:hover{
+.fab-name:hover {
   text-decoration: none;
 }
 .fab-area {
@@ -125,7 +136,7 @@ export default {
   border-radius: 10px;
   text-align: center;
 }
-.fab-area:hover{
+.fab-area:hover {
   text-decoration: none;
 }
 .fab-code {
@@ -139,7 +150,7 @@ export default {
   border-radius: 10px;
   text-align: center;
 }
-.fab-code:hover{
+.fab-code:hover {
   text-decoration: none;
 }
 .my-float {
