@@ -3,8 +3,8 @@
     <div>
       <app-header></app-header>
     </div>
-    <div class="container mt-3" id="body-custom">
-      <h1>Search for a country</h1>
+    <div class="container mt-3">
+      <h1>Search for a nation</h1>
       <form action>
         <div class="form-group">
           <input
@@ -17,9 +17,9 @@
         </div>
       </form>
       <div class="row justify-content-center">
-        <div v-for="nation in filterNation" :key="nation.index">
-          <router-link :to="'country/' + nation.alpha3Code.toLowerCase()" class="text-dark custom">
-            <app-item :nation="nation"></app-item>
+        <div v-for="nation in filterNation" :key="nation.index" class="col-sm-12 col-md-6 col-lg-3">
+          <router-link :to="'nation/' + nation.alpha3Code.toLowerCase()" class="text-dark custom">
+            <app-item :nation="nation" class="w-100"></app-item>
           </router-link>
         </div>
       </div>
@@ -104,53 +104,26 @@ export default {
   position: fixed;
   width: 45px;
   height: 45px;
-  bottom: 40px;
-  right: 40px;
+  bottom: 35px;
+  right: 35px;
   background-color: #0c9;
   color: #fff;
   border-radius: 50px;
   text-align: center;
 }
-.fab-name {
-  position: fixed;
-  width: 100px;
-  height: 45px;
-  bottom: 160px;
-  right: 40px;
-  background-color: #0c9;
-  color: #fff;
-  border-radius: 10px;
-  text-align: center;
-}
-.fab-name:hover {
-  text-decoration: none;
-}
+
 .fab-area {
   position: fixed;
   width: 100px;
   height: 45px;
   bottom: 100px;
-  right: 40px;
+  right: 30px;
   background-color: #0c9;
   color: #fff;
   border-radius: 10px;
   text-align: center;
 }
 .fab-area:hover {
-  text-decoration: none;
-}
-.fab-code {
-  position: fixed;
-  width: 100px;
-  height: 45px;
-  bottom: 220px;
-  right: 40px;
-  background-color: #0c9;
-  color: #fff;
-  border-radius: 10px;
-  text-align: center;
-}
-.fab-code:hover {
   text-decoration: none;
 }
 .my-float {

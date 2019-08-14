@@ -7,6 +7,7 @@ import Region from '@/components/view/Region.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode:'history',
   routes: [
     {
       path: '/',
@@ -19,7 +20,7 @@ export default new Router({
       component: About
     },
     {
-      path: '/country/:code',
+      path: '/nation/:code',
       name: 'Detail',
       component: Detail
     },
@@ -27,15 +28,10 @@ export default new Router({
       path: '/region/:region',
       name: 'Region',
       component: Region,
-      // children: [{
-      //   path: ':region',
-      //   name: 'RegionItem',
-      // },
-      // ],
     },
     {
-      path:'/region/country/:code',
-      redirect:'/country/:code',
+      path:'/region/nation/:code',
+      redirect:'/nation/:code',
     }
   ]
 })

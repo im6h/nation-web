@@ -8,6 +8,7 @@
           <!-- flag  -->
           <div class="col-lg-4">
             <div>
+              <h4>Nation flag</h4>
               <section>
                 <img
                   class="round mx-auto w-100 h-100"
@@ -16,7 +17,7 @@
                 />
               </section>
             </div>
-            <h4 class="text-left mt-4">Country</h4>
+            <h4 class="text-left mt-4">Nation</h4>
             <table class="table table-bordered">
               <tbody>
                 <tr>
@@ -37,9 +38,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <!-- Name -->
-          <div class="col-lg-4">
             <!-- language -->
             <h4 class="text-left">Languages</h4>
             <table class="table table-bordered">
@@ -50,6 +48,19 @@
                 </tr>
               </tbody>
             </table>
+            <!-- region economic bloc -->
+            <h4 class="text-left">Regional economic bloc</h4>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>{{ getDetailNation.regionalBlocs.map(e=>e.acronym).join(", ")}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Name -->
+          <div class="col-lg-4">
             <!-- code -->
             <h4 class="text-left">Codes</h4>
             <table class="table table-bordered">
@@ -90,9 +101,7 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <!-- Geography -->
-          <div class="col-lg-4">
+            <!-- Geography -->
             <h4 class="text-left">Geography</h4>
             <table class="table table-bordered">
               <tbody>
@@ -125,24 +134,19 @@
                 </tr>
                 <tr>
                   <th>Border</th>
-                  <td>
-                    {{getDetailNation.borders.join(", ")}}
-                    <!-- <span v-for="(border, index) in getDetailNation.borders" :key="index">
-                      <a :href="'/country/'+ border.toLowerCase()" class="m-2">{{border}}</a>
-                    </span> -->
-                  </td>
+                  <td>{{getDetailNation.borders.join(", ")}}</td>
                 </tr>
               </tbody>
             </table>
-            <h4 class="text-left">Regional economic bloc</h4>
-            <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <th>Name</th>
-                  <td>{{ getDetailNation.regionalBlocs.map(e=>e.acronym).join(", ")}}</td>
-                </tr>
-              </tbody>
-            </table>
+            
+          </div>
+          <!-- Geography -->
+          <div class="col-lg-4">
+            <h4>Map</h4>
+            <!-- map -->
+            <div class="mb-2">
+              <app-map v-bind:location="getDetailNation.latlng"></app-map>
+            </div>
           </div>
         </div>
         <app-footer class="mt-4"></app-footer>
@@ -154,15 +158,17 @@
 <script>
 import AppHeader from "../common/Header.vue";
 import AppFooter from "../common/Footer.vue";
+import AppMap from "../common/Map.vue";
 export default {
   name: "Detail",
   components: {
     AppHeader,
+    AppMap,
     AppFooter
   },
   data() {
     return {
-       show : true,
+      show: true
     };
   },
   computed: {
@@ -170,9 +176,7 @@ export default {
       return this.$store.getters.detailNation;
     }
   },
-  method: {
-    
-  },
+  method: {},
   created() {
     return this.$store.dispatch("GET_NATION", this.$route.params.code);
   }

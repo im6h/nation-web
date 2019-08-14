@@ -1,7 +1,6 @@
+// item nations
 <template >
   <div class="card m-1 p-0 custom-item" @mouseenter="show = false" @mouseleave="show =true">
-    <!-- float-button-search -->
-    
     <div class="row m-0 card-header custom-size">
       <transition v-if="show" name="fade">
         <div class="text-center mx-auto">

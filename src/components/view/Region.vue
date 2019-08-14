@@ -27,12 +27,12 @@
             <span class="text-danger">{{this.$route.params.region.toUpperCase()}}</span>
           </h2>
           <div class="row justify-content-center">
-            <div v-for="nation in getRegionNation" :key="nation.index">
+            <div v-for="nation in getRegionNation" :key="nation.index" class="col-sm-12 col-md-6 col-lg-4">
               <router-link
-                :to="'country/' + nation.alpha3Code.toLowerCase()"
+                :to="'nation/' + nation.alpha3Code.toLowerCase()"
                 class="text-dark custom"
               >
-                <app-item :nation="nation"></app-item>
+                <app-item :nation="nation" class="w-100"></app-item>
               </router-link>
             </div>
           </div>
